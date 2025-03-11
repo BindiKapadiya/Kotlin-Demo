@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinDemo"
         tools:targetApi="31">
-
+        <activity
+            android:name=".coroutine.CoroutineActivity"
+            android:exported="false" />
         <activity
             android:name=".Tutorial.MainKotlinActivity"
             android:exported="false" />

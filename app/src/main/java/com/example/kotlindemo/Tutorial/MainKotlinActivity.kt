@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import coil.api.load
 import coil.transform.CircleCropTransformation
+import com.example.kotlindemo.BaseActivity
 import com.example.kotlindemo.R
 
 class MainKotlinActivity : AppCompatActivity() {
@@ -62,8 +63,45 @@ class MainKotlinActivity : AppCompatActivity() {
 //        A27_Extensions().main()
 //        A28_ScopeFunctions().main()
 //        A29_Generics().main()
-        A30_Nesting().main()
+//        A30_Nesting().main()
+
+//        plusMinus(arrayOf(-4, 3, -9, 0, 4, 1))
     }
 
+    fun plusMinus2(arr: Array<Int>) {
+        val counts = arr.filter { it in -100..100 }.groupBy {
+            when {
+                it > 0 -> "positive"
+                it < 0 -> "negative"
+                else -> "zero"
+            }
+        }.mapValues { it.value.size }
 
+        println("$TAG Positive : ${counts["positive"]?.toDouble() ?: 0.0 / arr.size}")
+        println("$TAG Negative : ${counts["negative"]?.toDouble() ?: 0.0 / arr.size}")
+        println("$TAG Zero : ${counts["zero"]?.toDouble() ?: 0.0 / arr.size}")
+    }
+
+    fun plusMinus(arr: Array<Int>): Unit {
+        // Write your code here
+
+        var zero = 0
+        var positive = 0
+        var negative = 0
+        val size = arr.size
+
+        arr.forEach {
+            if (it in -100..100) {
+                when {
+                    it > 0 -> positive++
+                    it < 0 -> negative++
+                    else -> zero++
+                }
+            }
+        }
+
+        println("%.6f".format(positive.toDouble() / size))
+        println("%.6f".format(negative.toDouble() / size))
+        println("%.6f".format(zero.toDouble() / size))
+    }
 }

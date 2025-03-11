@@ -7,20 +7,26 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".SplashActivity">
+    tools:context=".coroutine.CoroutineActivity">
 
-    <Button
-        android:id="@+id/btnKotlin"
+    <TextView
+        android:id="@+id/txtCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="Kotlin Basic" />
+        android:text="0"
+        android:textSize="50dp" />
 
     <Button
-        android:id="@+id/btnCoroutine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="Coroutine" />
+        android:layout_marginTop="10dp"
+        android:onClick="updateCounter"
+        android:text="Update Counter" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="doAction"
+        android:text="Execute Task" />
 </LinearLayout>

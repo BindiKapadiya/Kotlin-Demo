@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.kotlindemo.Tutorial.MainKotlinActivity
+import com.example.kotlindemo.coroutine.CoroutineActivity
 
 class SplashActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,7 @@ class SplashActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btnKotlin -> startActivity(Intent(this, MainKotlinActivity::class.java))
+            R.id.btnCoroutine -> startActivity(Intent(this, CoroutineActivity::class.java))
         }
     }
 }
