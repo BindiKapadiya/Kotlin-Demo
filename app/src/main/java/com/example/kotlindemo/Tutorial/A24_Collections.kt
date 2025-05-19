@@ -21,7 +21,6 @@ class A24_Collections {
         println(num)
 
 
-
         students.put(1, "Bindi")
         students.put(2, "Kashyap")
         students.put(3, "Sanky")

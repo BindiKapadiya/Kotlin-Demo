@@ -64,6 +64,8 @@ class MainKotlinActivity : AppCompatActivity() {
 //        A28_ScopeFunctions().main()
 //        A29_Generics().main()
 //        A30_Nesting().main()
+        A31_Inline().main()
+//        A32_Interview().main()
 
 //        plusMinus(arrayOf(-4, 3, -9, 0, 4, 1))
     }

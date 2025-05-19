@@ -23,4 +23,25 @@
         android:onClick="onClick"
         android:text="Coroutine" />
 
+    <Button
+        android:id="@+id/btnWorkManager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Work Manager" />
+
+    <Button
+        android:id="@+id/btnFlow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Flow" />
+
+    <Button
+        android:id="@+id/btnJetpackCompose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Jetpack Compose" />
+
 </LinearLayout>

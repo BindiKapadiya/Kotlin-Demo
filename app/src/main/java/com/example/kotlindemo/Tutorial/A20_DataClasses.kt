@@ -4,7 +4,7 @@ class A20_DataClasses {
     val TAG = A20_DataClasses::class.simpleName
 
     fun main() {
-        val p1 = Person(1, "Bindi")
+        val p1 = Person(1, "Bindi",27)
         val p2 = Person(1, "Bindi")
 
         println(p1)
@@ -23,5 +23,19 @@ class A20_DataClasses {
         println(p1.component2())
     }
 
-    data class Person(val id: Int, val name: String)
+    data class Person(val id: Int, val name: String, var age: Int = 23) {
+        var _age: Int = age
+            set(value) {
+                require(value in 23..25) {
+                    "Age must be between 23 and 25"
+                }
+                field = value
+            }
+
+        init {
+            require(age in 23..25) {
+                "Age must be between 23 & 25"
+            }
+        }
+    }
 }

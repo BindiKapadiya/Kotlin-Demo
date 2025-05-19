@@ -22,7 +22,7 @@ class A25_Lambdas {
             println("Hello Lambda")
             val x = 10 + 40
             20.0
-            "Hello everyone"
+            "Hello everyone" // return type
         }
 
         println(multiLineLamda())

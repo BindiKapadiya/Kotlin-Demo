@@ -7,7 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.kotlindemo.Compose.MyComposeActivity
+import com.example.kotlindemo.Flow.FlowActivity
 import com.example.kotlindemo.Tutorial.MainKotlinActivity
+import com.example.kotlindemo.Services.WorkManagerActivity
 import com.example.kotlindemo.coroutine.CoroutineActivity
 
 class SplashActivity : AppCompatActivity(), View.OnClickListener {
@@ -26,6 +29,9 @@ class SplashActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.btnKotlin -> startActivity(Intent(this, MainKotlinActivity::class.java))
             R.id.btnCoroutine -> startActivity(Intent(this, CoroutineActivity::class.java))
+            R.id.btnWorkManager -> startActivity(Intent(this, WorkManagerActivity::class.java))
+            R.id.btnFlow -> startActivity(Intent(this, FlowActivity::class.java))
+            R.id.btnJetpackCompose -> startActivity(Intent(this, MyComposeActivity::class.java))
         }
     }
 }
