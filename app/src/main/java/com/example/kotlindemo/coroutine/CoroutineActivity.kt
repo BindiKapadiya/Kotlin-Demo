@@ -16,6 +16,7 @@ import com.example.kotlindemo.R
 import com.example.kotlindemo.SplashActivity
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
@@ -135,7 +136,7 @@ class CoroutineActivity : BaseActivity() {
 
     private suspend fun printFollowers() {
         CoroutineScope(Dispatchers.IO).launch {
-            val fbFollowers = async { getFbFollowers() }
+            val fbFollowers: Deferred<Int> = async { getFbFollowers() }
             val instaFollowers = async { getInstagramFollowers() }
             Log.e(TAG, "Fb: ${fbFollowers.await()}, Insta: ${instaFollowers.await()}")
         }
@@ -148,6 +149,7 @@ class CoroutineActivity : BaseActivity() {
         val insta = CoroutineScope(Dispatchers.IO).async {
             getInstagramFollowers()
         }
+
         Log.e(TAG, "Fb: ${fb.await()}, Insta: ${insta.await()}")
     }
 

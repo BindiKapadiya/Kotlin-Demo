@@ -1,17 +1,18 @@
 package com.example.kotlindemo.Flow
 
-import android.content.res.Resources.Theme
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
-
 import androidx.compose.runtime.collectAsState
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.kotlindemo.BaseActivity
 import com.example.kotlindemo.R
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -19,23 +20,22 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kotlin.time.measureTime
 
 class FlowActivity : BaseActivity() {
@@ -59,6 +59,9 @@ class FlowActivity : BaseActivity() {
         // Hot Flow
 //        sharedFlow()
         stateFlow()
+
+        SearchDataFromApi()
+
     }
 
     private fun integerFlow() {
@@ -234,4 +237,50 @@ class FlowActivity : BaseActivity() {
 
     data class Note(val id: Int, val isActive: Boolean, val title: String, val description: String)
     data class FormattedNote(val isActive: Boolean, val title: String, val description: String)
+
+
+    fun SearchDataFromApi() {
+        val text = MutableStateFlow("")
+        val etSearch = findViewById<EditText>(R.id.etSearch)
+
+        lifecycleScope.launch {
+            text
+                .debounce(5000) // Wait for a pause in emissions. Useful for search bars.
+                .filter { it.isNotEmpty() }
+                .distinctUntilChanged() // Skip consecutive duplicates
+                .onEach {
+                    Log.e(TAG, "Search query: $it")
+                }
+                .collect {
+                    callApi(text.value)
+                }
+        }
+
+//        searchQuery
+//            .debounce(5000) // Wait for 5 seconds of no input
+//            .filter { it.isNotEmpty() }
+//            .collect { query ->
+//                callApi(query)
+//            }
+
+        etSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                text.value = s.toString()
+                Log.e(TAG, "afterTextChanged: $s")
+            }
+        })
+    }
+
+    fun callApi(query: String) {
+        // Make your API call here
+        Log.e(TAG, "Calling API for query: $query")
+    }
 }
