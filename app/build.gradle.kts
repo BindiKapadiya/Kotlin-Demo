@@ -38,6 +38,11 @@ android {
     buildFeatures {
         compose = true
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.14"
     }
@@ -93,4 +98,11 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata")
     // Integration with RxJava
     implementation("androidx.compose.runtime:runtime-rxjava2")
+
+
+    implementation ("com.karumi:dexter:6.2.3")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+//    kapt("com.github.bumptech.glide:compiler:4.16.0")
+
+
 }

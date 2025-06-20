@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.kotlindemo.Compose.MyComposeActivity
 import com.example.kotlindemo.Flow.FlowActivity
+import com.example.kotlindemo.Gallery.GalleryActivity
 import com.example.kotlindemo.Tutorial.MainKotlinActivity
 import com.example.kotlindemo.Services.WorkManagerActivity
 import com.example.kotlindemo.coroutine.CoroutineActivity
@@ -32,6 +33,7 @@ class SplashActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btnWorkManager -> startActivity(Intent(this, WorkManagerActivity::class.java))
             R.id.btnFlow -> startActivity(Intent(this, FlowActivity::class.java))
             R.id.btnJetpackCompose -> startActivity(Intent(this, MyComposeActivity::class.java))
+            R.id.btnGallery -> startActivity(Intent(this, GalleryActivity::class.java))
         }
     }
 }
